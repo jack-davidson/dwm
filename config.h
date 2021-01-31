@@ -8,15 +8,15 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
-static const char fg0[] = "#ebdbb2";
-static const char fg1[] = "#d79921";
-static const char bg0[] = "#282828";
-static const char bg1[] = "#3c3836";
-static const char bd0[] = "#282828";
-static const char bd1[] = "#ebdbb2";
+static const char fg0[] = "#ebdbb2";  /* primary foreground */
+static const char fg1[] = "#d79921";  /* accent foreground  */
+static const char bg0[] = "#282828";  /* primary background */
+static const char bg1[] = "#3c3836";  /* accent background  */
+static const char bd0[] = "#282828";  /* unselected border  */
+static const char bd1[] = "#ebdbb2";  /* selected border    */
 
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
+	/*               fg   bg   bd   */
 	[SchemeNorm] = { fg0, bg0, bd0 },
 	[SchemeSel]  = { fg1, bg1, bd1 },
 };
@@ -31,7 +31,7 @@ static const Rule rules[] = {
 	 */
 	/* class          instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",         NULL,       NULL,       0,            1,           -1 },
-	{ "qutebrowser",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "qutebrowser",  NULL,       NULL,       1 << 3,       0,           -1 },
 };
 
 /* layout(s) */
@@ -42,8 +42,8 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */
@@ -63,37 +63,41 @@ static const char
 *dmenucmd[] = { "dmenu_run", "-i", "-m",  dmenumon, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
+static const char *browsercmd[] = { "qutebrowser", NULL };
+
+/* Array of keys in alphabetical order of key pressed  */
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_u,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_q,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_a,                      0)
-	TAGKEYS(                        XK_s,                      1)
-	TAGKEYS(                        XK_d,                      2)
-	TAGKEYS(                        XK_f,                      3)
-	TAGKEYS(                        XK_g,                      4)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	/* modifier         key        function        argument */
+	TAGKEYS(            XK_a,                      0)
+	{ MODKEY,           XK_b,      togglebar,      {0} },
+	{ MODKEY|ShiftMask, XK_c,      killclient,     {0} },
+	TAGKEYS(            XK_d,                      2)
+	{ MODKEY,           XK_e,      setlayout,      {.v = &layouts[2]} },
+	TAGKEYS(            XK_f,                      3)
+	TAGKEYS(            XK_g,                      4)
+	{ MODKEY,           XK_h,      setmfact,       {.f = -0.05} },
+	{ MODKEY,           XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY,           XK_j,      focusstack,     {.i = +1 } },
+	{ MODKEY,           XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,           XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY|ShiftMask, XK_o,      spawn,          {.v = browsercmd} },
+	{ MODKEY,           XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,           XK_q,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask, XK_q,      quit,           {0} },
+	TAGKEYS(            XK_s,                      1)
+	{ MODKEY,           XK_u,      incnmaster,     {.i = -1 } },
+	{ MODKEY,           XK_w,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,           XK_0,      view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask, XK_0,      tag,            {.ui = ~0 } },
+	{ MODKEY,           XK_space,  setlayout,      {0} },
+	{ MODKEY|ShiftMask, XK_space,  togglefloating, {0} },
+	{ MODKEY|ShiftMask, XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,           XK_Return, zoom,           {0} },
+	{ MODKEY,           XK_Tab,    view,           {0} },
+	{ MODKEY,           XK_comma,  focusmon,       {.i = -1 } },
+	{ MODKEY,           XK_period, focusmon,       {.i = +1 } },
+	{ MODKEY|ShiftMask, XK_comma,  tagmon,         {.i = -1 } },
+	{ MODKEY|ShiftMask, XK_period, tagmon,         {.i = +1 } },
 };
 
 /* button definitions */
