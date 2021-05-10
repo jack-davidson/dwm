@@ -27,7 +27,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5"};
+static const char *tags[] = { "", "", "", "爵", "", ""};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -35,8 +35,10 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Gimp",     NULL,       NULL,   0,            1,           -1 },
+	{ "Firefox",  NULL,       NULL,   1 << 3,       0,           -1 },
+	{ "qutebrowser",  NULL,   NULL,   1 << 3,       0,           -1 },
+	{ "Thunderbird",  NULL,   NULL,   1 << 5,       0,           -1 },
 };
 
 /* layout(s) */
@@ -97,6 +99,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_d,                      2)
 	TAGKEYS(                        XK_f,                      3)
 	TAGKEYS(                        XK_g,                      4)
+	TAGKEYS(                        XK_z,                      5)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
