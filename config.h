@@ -8,22 +8,22 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
-static const char dracula_background[] = "#282a36";
-static const char dracula_current_line[] = "#44475a";
-static const char dracula_foreground[] = "#f8f8f2";
-static const char dracula_comment[] = "#6272a4";
-static const char dracula_cyan[] = "#8be9fd";
-static const char dracula_green[] = "#50fa7b";
-static const char dracula_orange[] = "#ffb86c";
-static const char dracula_pink[] =  "#ff79c6";
-static const char dracula_purple[] = "#bd93f9";
-static const char dracula_red[] = "#ff5555";
-static const char dracula_yellow[] = "#f1fa8c";
+static const char background[] = "#2e3440";
+static const char current_line[] = "#434c5e";
+static const char foreground[] = "#eceff4";
+static const char comment[] = "#4c566a";
+static const char cyan[] = "#8be9fd";
+static const char green[] = "#50fa7b";
+static const char orange[] = "#ffb86c";
+static const char pink[] =  "#ff79c6";
+static const char purple[] = "#5e81ac";
+static const char red[] = "#ff5555";
+static const char yellow[] = "#f1fa8c";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { dracula_foreground, dracula_background, dracula_comment },
-	[SchemeSel]  = { dracula_purple, dracula_current_line,  dracula_purple  },
+	[SchemeNorm] = { "#eceff4", "#2e3440", "#4c566a" },
+	[SchemeSel]  = { "#81a1c1", "#434d53", "#81a1c1"  },
 };
 
 /* tagging */
