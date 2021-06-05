@@ -8,22 +8,10 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
-static const char background[] = "#2e3440";
-static const char current_line[] = "#434c5e";
-static const char foreground[] = "#eceff4";
-static const char comment[] = "#4c566a";
-static const char cyan[] = "#8be9fd";
-static const char green[] = "#50fa7b";
-static const char orange[] = "#ffb86c";
-static const char pink[] =  "#ff79c6";
-static const char purple[] = "#5e81ac";
-static const char red[] = "#ff5555";
-static const char yellow[] = "#f1fa8c";
-
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { "#eceff4", "#2e3440", "#4c566a" },
-	[SchemeSel]  = { "#81a1c1", "#434d53", "#81a1c1"  },
+	[SchemeSel]  = { "#81a1c1", "#434c5e", "#81a1c1"  },
 };
 
 /* tagging */
