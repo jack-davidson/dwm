@@ -75,11 +75,6 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *shotcmd[] = {"shot", NULL };
-static const char *incvol[] = {"amixer", "set", DEVICE, "5%+", NULL};
-static const char *decvol[] = {"amixer", "set", DEVICE, "5%-", NULL};
-static const char *mutevol[] = {"amixer", "set", DEVICE, "toggle", NULL};
-static const char *incbrightness[] = {"xbacklight", "-inc", "5", NULL};
-static const char *decbrightness[] = {"xbacklight", "-dec", "5", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
