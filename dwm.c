@@ -705,9 +705,6 @@ drawbar(Monitor *m)
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
 
-	if (!m->showbar)
-		return;
-
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
@@ -755,7 +752,8 @@ drawbars(void)
 	Monitor *m;
 
 	for (m = mons; m; m = m->next)
-		drawbar(m);
+		if (m->showbar)
+			drawbar(m);
 }
 
 void
