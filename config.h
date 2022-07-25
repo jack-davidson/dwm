@@ -69,6 +69,17 @@ static const Layout layouts[] = {
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
+/* like SHCMD except also send a signal to a program */
+#define SIGCMD(program, sig, cmd) { \
+	.v = (const char*[]){ \
+		"/bin/sh", "-c", \
+		cmd "kill -" #sig "$(pidof " program ")", NULL \
+	} \
+}
+
+/* wrapper to SIGCMD to send signals to dwmblocks */
+#define BLOCK(sig, cmd) SIGCMD("dwmblocks", sig, cmd)
+
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
@@ -80,11 +91,11 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,	                XK_c,      spawn,          {.v = shotcmd } },
-	{ 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("amixer set "DEVICE" 5%+; kill -44 $(pidof dwmblocks)") },
-	{ 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("amixer set "DEVICE" 5%-; kill -44 $(pidof dwmblocks)") },
-	{ 0,              XF86XK_AudioMute, 	   spawn,          SHCMD("amixer set "DEVICE" toggle; kill -44 $(pidof dwmblocks)") },
-	{ 0,	          XF86XK_MonBrightnessUp,  spawn,	   SHCMD("xbacklight -inc 5; kill -45 $(pidof dwmblocks)") },
-	{ 0,	          XF86XK_MonBrightnessDown,spawn,	   SHCMD("xbacklight -dec 5; kill -45 $(pidof dwmblocks)") },
+	{ 0,              XF86XK_AudioRaiseVolume, spawn,          BLOCK(44, "amixer set "DEVICE" 5%+") },
+	{ 0,              XF86XK_AudioLowerVolume, spawn,          BLOCK(44, "amixer set "DEVICE" 5%-") },
+	{ 0,              XF86XK_AudioMute, 	   spawn,          BLOCK(44, "amixer set "DEVICE" toggle") },
+	{ 0,	          XF86XK_MonBrightnessUp,  spawn,	   BLOCK(44, "xbacklight -inc 5") },
+	{ 0,	          XF86XK_MonBrightnessDown,spawn,	   BLOCK(44, "xbacklight -dec 5") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
