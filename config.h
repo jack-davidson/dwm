@@ -73,13 +73,13 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { "kitty", NULL };
-static const char *shotcmd[] = {"shot", NULL };
+static const char *screenshotcmd[] = {"shot.sh", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,	                XK_c,      spawn,          {.v = shotcmd } },
+	{ MODKEY,	                XK_c,      spawn,          {.v = screenshotcmd } },
 	{ 0,              XF86XK_AudioRaiseVolume, spawn,          SHCMD("amixer set "DEVICE" 5%+; kill -44 $(pidof dwmblocks)") },
 	{ 0,              XF86XK_AudioLowerVolume, spawn,          SHCMD("amixer set "DEVICE" 5%-; kill -44 $(pidof dwmblocks)") },
 	{ 0,              XF86XK_AudioMute, 	   spawn,          SHCMD("amixer set "DEVICE" toggle; kill -44 $(pidof dwmblocks)") },
