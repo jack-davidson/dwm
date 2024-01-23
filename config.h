@@ -43,7 +43,8 @@ static const Rule rules[] = {
 	/* class          instance    title       tags mask     isfloating   monitor */
 	{ "Slack",        NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "qutebrowser",  NULL,       NULL,       1 << 3,       0,           -1 },
-	{ "QjackCtl",     NULL,       NULL,       1,       1,           -1 },
+	{ "QjackCtl",     NULL,       NULL,       1     ,       1,           -1 },
+	{ "QjackCtl",     NULL,       "Graph",    1,            0,           -1 },
 };
 
 /* layout(s) */
