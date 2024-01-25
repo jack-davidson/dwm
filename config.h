@@ -28,8 +28,10 @@ static const char selborder[]  = "#81a1c1";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { normfg, normbg, normborder },
-	[SchemeSel]  = { selfg,  selbg,  selborder  },
+	[SchemeNorm] = { normfg, normbg, normborder }, /* Unselected */
+	[SchemeSel]  = { selfg,  selbg,  selborder  }, /* Selected */
+
+    [SchemeFocus]= { selfg,  normbg, selborder  } /* Title of Focused Window in Bar */
 };
 
 /* tagging */
