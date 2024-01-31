@@ -164,11 +164,11 @@ static Button buttons[] = {
  */
 ResourcePref resources[] = {
 		{ "background",        STRING,   &background },
-		{ "normbordercolor",    STRING,  &normborder },
+		{ "normborder",    STRING,  &normborder },
 		{ "foreground",        STRING,   &foreground },
-		{ "selbgcolor",         STRING,  &selbg },
-		{ "selbordercolor",     STRING,  &selborder },
-		{ "selfgcolor",         STRING,  &selfg },
+		{ "selbg",         STRING,  &selbg },
+		{ "selborder",     STRING,  &selborder },
+		{ "selfg",         STRING,  &selfg },
 		{ "borderpx",          	INTEGER, &borderpx },
 		{ "snap",          		INTEGER, &snap },
 		{ "showbar",          	INTEGER, &showbar },
