@@ -10,33 +10,23 @@
 #endif
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int statuspadding      = 8;
-static const int topbar             = 0;        /* 0 means bottom bar */
+static unsigned int borderpx  = 2;        /* border pixel of windows */
+static unsigned int snap      = 32;       /* snap pixel */
+static int showbar            = 1;        /* 0 means no bar */
+static int statuspadding      = 8;
+static int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
-/* Nord
-static const char normfg[]     = "#eceff4";
-static const char normbg[]     = "#2e3440";
-static const char normborder[] = "#4c566a";
+static char normfg[]     = "#3d3d3d";
+static char normbg[]     = "#AAAAAA";
+static char normborder[] = "#000000";
 
-static const char selfg[]      = "#81a1c1";
-static const char selbg[]      = "#434c5e";
-static const char selborder[]  = "#81a1c1";
-*/
+static char selfg[]      = "#FFFFAA";
+static char selbg[]      = "#3d3d3d";
+static char selborder[]  = "#AAAAAA";
 
-static const char normfg[]     = "#3d3d3d";
-static const char normbg[]     = "#AAAAAA";
-static const char normborder[] = "#000000";
-
-static const char selfg[]      = "#FFFFAA";
-static const char selbg[]      = "#3d3d3d";
-static const char selborder[]  = "#AAAAAA";
-
-static const char *colors[][3]      = {
+static char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { normfg, normbg, normborder }, /* Unselected */
 	[SchemeSel]  = { selfg,  selbg,  selborder  }, /* Selected */
@@ -61,10 +51,10 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
+static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static int nmaster     = 1;    /* number of clients in master area */
+static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -152,5 +142,24 @@ static Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+};
+
+/*
+ * Xresources preferences to load at startup
+ */
+ResourcePref resources[] = {
+		{ "normbgcolor",        STRING,  &normbg },
+		{ "normbordercolor",    STRING,  &normborder },
+		{ "normfgcolor",        STRING,  &normfg },
+		{ "selbgcolor",         STRING,  &selbg },
+		{ "selbordercolor",     STRING,  &selborder },
+		{ "selfgcolor",         STRING,  &selfg },
+		{ "borderpx",          	INTEGER, &borderpx },
+		{ "snap",          		INTEGER, &snap },
+		{ "showbar",          	INTEGER, &showbar },
+		{ "topbar",          	INTEGER, &topbar },
+		{ "nmaster",          	INTEGER, &nmaster },
+		{ "resizehints",       	INTEGER, &resizehints },
+		{ "mfact",      	 	FLOAT,   &mfact },
 };
 
