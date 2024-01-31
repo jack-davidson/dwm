@@ -16,6 +16,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int statuspadding      = 8;
 static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
+static const char dmenufont[]       = "monospace:size=10";
 
 /* Nord
 static const char normfg[]     = "#eceff4";
@@ -27,14 +28,13 @@ static const char selbg[]      = "#434c5e";
 static const char selborder[]  = "#81a1c1";
 */
 
-// Black and White
 static const char normfg[]     = "#3d3d3d";
 static const char normbg[]     = "#AAAAAA";
-static const char normborder[] = "#FFFFAA";
+static const char normborder[] = "#000000";
 
 static const char selfg[]      = "#FFFFAA";
 static const char selbg[]      = "#3d3d3d";
-static const char selborder[]  = "#000000";
+static const char selborder[]  = "#AAAAAA";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -55,6 +55,7 @@ static const Rule rules[] = {
 	/* class          instance    title       tags mask     isfloating   monitor */
 	{ "Slack",        NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "qutebrowser",  NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "kitty",     NULL,       NULL,       0     ,       1,           -1 },
 	{ "QjackCtl",     NULL,       NULL,       1     ,       1,           -1 },
 	{ "QjackCtl",     NULL,       "Graph",    1,            0,           -1 },
 };
@@ -85,7 +86,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
+static const char *dmenucmd[] = { "dmenu_run",
+    "-fn", dmenufont,
+    "-nb", normbg, "-nf", normfg,
+    "-sb", selbg, "-sf", selfg, 
+    "-nhb", normbg, "-nhf", selfg, 
+    "-shb", selbg, "-shf", normbg, 
+    NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *screenshotcmd[] = {"shot.sh", NULL };
 
