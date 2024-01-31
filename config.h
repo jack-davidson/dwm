@@ -10,7 +10,7 @@
 #endif
 
 /* appearance */
-static unsigned int borderpx  = 2;        /* border pixel of windows */
+static unsigned int borderpx  = 2;        /* border pixel of windows and bar */
 static unsigned int snap      = 32;       /* snap pixel */
 static int showbar            = 1;        /* 0 means no bar */
 static int statuspadding      = 8;
@@ -28,10 +28,10 @@ static char selborder[]  = "#AAAAAA";
 
 static char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { normfg, normbg, normborder }, /* Unselected */
+	[SchemeNorm] = { foreground, background, normborder }, /* Unselected */
 	[SchemeSel]  = { selfg,  selbg,  selborder  }, /* Selected */
 
-    [SchemeFocus]= { normfg,  normbg, selborder  } /* Title of Focused Window in Bar */
+    [SchemeFocus]= { foreground,  background, selborder  } /* Title of Focused Window in Bar */
 };
 
 /* tagging */
@@ -78,10 +78,10 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run",
     "-fn", dmenufont,
-    "-nb", normbg, "-nf", normfg,
+    "-nb", background, "-nf", foreground,
     "-sb", selbg, "-sf", selfg, 
-    "-nhb", normbg, "-nhf", selfg, 
-    "-shb", selbg, "-shf", normbg, 
+    "-nhb", background, "-nhf", selfg, 
+    "-shb", selbg, "-shf", background, 
     NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *screenshotcmd[] = {"shot.sh", NULL };
@@ -144,13 +144,30 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+/* implementing resource classes
+ *
+ * ResourcePref border[] = {
+ *      { "focused", STRING, &selborder },
+ * };
+ *
+ * ResourcePref bar[] = {
+ *      { "show", INTEGER, &selborder },
+ *      { "top",  INTEGER, &topbar },
+ * };
+ *
+ * ResourceClass resources[] = {
+ * { "border", STRING, &border },
+ * { "bar",    STRING, &bar },
+ * }
+ */
+
 /*
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "background",        STRING,  &normbg },
+		{ "background",        STRING,  &background },
 		{ "normbordercolor",    STRING,  &normborder },
-		{ "foreground",        STRING,  &normfg },
+		{ "foreground",        STRING,  &foreground },
 		{ "selbgcolor",         STRING,  &selbg },
 		{ "selbordercolor",     STRING,  &selborder },
 		{ "selfgcolor",         STRING,  &selfg },
