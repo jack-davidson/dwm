@@ -14,10 +14,10 @@ static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int statuspadding      = 8;
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 
-/* Nord */
+/* Nord
 static const char normfg[]     = "#eceff4";
 static const char normbg[]     = "#2e3440";
 static const char normborder[] = "#4c566a";
@@ -25,13 +25,23 @@ static const char normborder[] = "#4c566a";
 static const char selfg[]      = "#81a1c1";
 static const char selbg[]      = "#434c5e";
 static const char selborder[]  = "#81a1c1";
+*/
+
+// Black and White
+static const char normfg[]     = "#3d3d3d";
+static const char normbg[]     = "#AAAAAA";
+static const char normborder[] = "#FFFFAA";
+
+static const char selfg[]      = "#FFFFAA";
+static const char selbg[]      = "#3d3d3d";
+static const char selborder[]  = "#000000";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { normfg, normbg, normborder }, /* Unselected */
 	[SchemeSel]  = { selfg,  selbg,  selborder  }, /* Selected */
 
-    [SchemeFocus]= { selfg,  normbg, selborder  } /* Title of Focused Window in Bar */
+    [SchemeFocus]= { normfg,  normbg, selborder  } /* Title of Focused Window in Bar */
 };
 
 /* tagging */
