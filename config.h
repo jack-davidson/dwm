@@ -18,8 +18,8 @@ static int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
-static char normfg[]     = "#3d3d3d";
-static char normbg[]     = "#AAAAAA";
+static char foreground[]     = "#3d3d3d";
+static char background[]     = "#AAAAAA";
 static char normborder[] = "#000000";
 
 static char selfg[]      = "#FFFFAA";
@@ -148,9 +148,9 @@ static Button buttons[] = {
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "normbgcolor",        STRING,  &normbg },
+		{ "background",        STRING,  &normbg },
 		{ "normbordercolor",    STRING,  &normborder },
-		{ "normfgcolor",        STRING,  &normfg },
+		{ "foreground",        STRING,  &normfg },
 		{ "selbgcolor",         STRING,  &selbg },
 		{ "selbordercolor",     STRING,  &selborder },
 		{ "selfgcolor",         STRING,  &selfg },
