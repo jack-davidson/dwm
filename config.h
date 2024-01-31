@@ -30,8 +30,6 @@ static char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { foreground, background, normborder }, /* Unselected */
 	[SchemeSel]  = { selfg,  selbg,  selborder  }, /* Selected */
-
-    [SchemeFocus]= { foreground,  background, selborder  } /* Title of Focused Window in Bar */
 };
 
 /* tagging */
@@ -165,9 +163,9 @@ static Button buttons[] = {
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "background",        STRING,  &background },
+		{ "background",        STRING,   &background },
 		{ "normbordercolor",    STRING,  &normborder },
-		{ "foreground",        STRING,  &foreground },
+		{ "foreground",        STRING,   &foreground },
 		{ "selbgcolor",         STRING,  &selbg },
 		{ "selbordercolor",     STRING,  &selborder },
 		{ "selfgcolor",         STRING,  &selfg },
