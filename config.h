@@ -44,6 +44,9 @@ static const Rule rules[] = {
 	{ "Slack",        NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "qutebrowser",  NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "kitty",     NULL,       NULL,       0     ,       1,           -1 },
+	{ "XCalc",     NULL,       NULL,       0     ,       1,           -1 },
+	{ "XLogo",     NULL,       NULL,       0     ,       1,           -1 },
+	{ "XClock",     NULL,       NULL,       0     ,       1,           -1 },
 	{ "QjackCtl",     NULL,       NULL,       1     ,       1,           -1 },
 	{ "QjackCtl",     NULL,       "Graph",    1,            0,           -1 },
 };
