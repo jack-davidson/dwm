@@ -83,6 +83,7 @@ static const char *dmenucmd[] = { "dmenu_run",
     "-sb", selbg, "-sf", selfg, 
     "-nhb", background, "-nhf", selfg, 
     "-shb", selbg, "-shf", background, 
+    "-b",
     NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 static const char *screenshotcmd[] = {"shot.sh", NULL };
