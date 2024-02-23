@@ -16,7 +16,7 @@ static int showbar            = 1;        /* 0 means no bar */
 static int statuspadding      = 8;
 static int topbar             = 0;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static char dmenufont[]       = "monospace:size=10";
 
 static char foreground[]     = "#3d3d3d";
 static char background[]     = "#AAAAAA";
@@ -77,11 +77,11 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run",
+static char *dmenucmd[] = { "dmenu_run",
     "-fn", dmenufont,
     "-nb", background, "-nf", foreground,
     "-sb", selbg, "-sf", selfg, 
-    "-nhb", background, "-nhf", selfg, 
+    "-nhb", background, "-nhf", normborder, 
     "-shb", selbg, "-shf", background, 
     "-b",
     NULL };
